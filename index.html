@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>水果卡片翻牌游戏</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>水果翻牌游戏</h1>
+
+        <div id="difficultySelect" class="difficulty-select">
+            <p>选择游戏难度</p>
+            <div class="difficulty-buttons">
+                <button class="diff-btn" data-size="4">4×4 (简单)</button>
+                <button class="diff-btn" data-size="5">5×5 (中等)</button>
+                <button class="diff-btn" data-size="6">6×6 (困难)</button>
+            </div>
+        </div>
+
+        <div id="timeModal" class="modal">
+            <div class="modal-content">
+                <div class="modal-text">
+                    <h2>选择记牌时间</h2>
+                    <div class="time-buttons">
+                        <button class="time-btn modal-time-btn" data-time="5">5秒</button>
+                        <button class="time-btn modal-time-btn" data-time="10">10秒</button>
+                        <button class="time-btn modal-time-btn" data-time="15">15秒</button>
+                        <button class="time-btn modal-time-btn" data-time="20">20秒</button>
+                        <button class="time-btn modal-time-btn" data-time="30">30秒</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="gameArea" class="game-area" style="display: none;">
+            <div id="memorizeTimer" class="memorize-timer" style="display: none;">记牌时间：<span id="memorizeCountdown">5</span>秒</div>
+            <div class="game-board" id="gameBoard">
+            </div>
+            <div class="stats">
+                <span>时间: <span id="timer">00:00</span></span>
+                <span>步数: <span id="moves">0</span></span>
+                <span>匹配: <span id="matches">0</span></span>
+            </div>
+            <button id="restartBtn">重新开始</button>
+            <button id="changeDifficultyBtn">更换难度</button>
+        </div>
+    </div>
+
+    <div id="winModal" class="modal">
+        <div class="modal-content">
+            <canvas id="fireworksCanvas"></canvas>
+            <div class="modal-text">
+                <h2>🎉 恭喜你赢了！ 🎉</h2>
+                <p>难度: <span id="modalDifficulty"></span></p>
+                <p>用时: <span id="modalTime"></span></p>
+                <p>步数: <span id="modalMoves"></span></p>
+                <div class="modal-buttons">
+                    <button id="playAgainBtn">再玩一次</button>
+                    <button id="closeModalBtn">返回主页</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,428 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+    overflow: hidden;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(180deg, #87CEEB 0%, #E0F6FF 40%, #FFE4E1 100%);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+body::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        radial-gradient(circle at 20% 80%, rgba(255, 215, 0, 0.3) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(255, 182, 193, 0.3) 0%, transparent 50%),
+        radial-gradient(circle at 60% 60%, rgba(144, 238, 144, 0.2) 0%, transparent 40%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+.container {
+    text-align: center;
+    padding: 20px;
+    max-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+}
+
+h1 {
+    color: #0077be;
+    font-size: 2rem;
+    margin-bottom: 15px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    flex-shrink: 0;
+}
+
+.difficulty-select {
+    background: rgba(135, 206, 235, 0.4);
+    border-radius: 20px;
+    padding: 20px;
+    backdrop-filter: blur(10px);
+    margin-bottom: 15px;
+    flex-shrink: 0;
+    border: 2px solid rgba(0, 119, 190, 0.3);
+}
+
+.difficulty-select p {
+    color: #0077be;
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+.difficulty-buttons {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.diff-btn {
+    padding: 12px 25px;
+    font-size: 1rem;
+    font-weight: 600;
+    color: white;
+    background: linear-gradient(145deg, #1a365d, #2c5282);
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 4px 15px rgba(66, 153, 225, 0.4);
+}
+
+.diff-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(66, 153, 225, 0.5);
+}
+
+.diff-btn:active {
+    transform: translateY(0);
+}
+
+.diff-btn.active {
+    background: linear-gradient(145deg, #0077be, #005a8c);
+    box-shadow: 0 4px 15px rgba(0, 119, 190, 0.5);
+}
+
+.time-buttons {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+}
+
+.time-btn {
+    padding: 10px 20px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #0077be;
+    background: rgba(255, 255, 255, 0.6);
+    border: 2px solid #0077be;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.time-btn:hover {
+    background: rgba(0, 119, 190, 0.1);
+    transform: translateY(-2px);
+}
+
+.time-btn.active {
+    background: #0077be;
+    color: white;
+    box-shadow: 0 4px 15px rgba(0, 119, 190, 0.4);
+}
+
+.start-btn {
+    padding: 15px 40px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: white;
+    background: linear-gradient(145deg, #0077be, #005a8c);
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 4px 15px rgba(0, 119, 190, 0.4);
+}
+
+.start-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 119, 190, 0.5);
+}
+
+.start-btn:active {
+    transform: translateY(0);
+}
+
+.modal-time-btn {
+    padding: 15px 25px;
+    font-size: 1.1rem;
+}
+
+.modal-time-btn:hover {
+    transform: scale(1.05);
+}
+
+.modal-time-btn.active {
+    transform: scale(1.05);
+}
+
+.game-area {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.memorize-timer {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #0077be;
+    margin-bottom: 15px;
+    padding: 10px 25px;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 25px;
+    box-shadow: 0 4px 15px rgba(0, 119, 190, 0.3);
+    animation: pulse 1s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+}
+
+.game-board {
+    display: grid;
+    gap: 10px;
+    padding: 15px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    backdrop-filter: blur(10px);
+}
+
+.card {
+    aspect-ratio: 1;
+    cursor: pointer;
+    perspective: 1000px;
+}
+
+.card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+}
+
+.card.flipped .card-inner {
+    transform: rotateY(180deg);
+}
+
+.card-front,
+.card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.card-back {
+    background: linear-gradient(145deg, #1a365d, #2c5282);
+    border: 3px solid #3182ce;
+}
+
+.card-back::before {
+    content: '?';
+    color: #0077be;
+    font-size: 3rem;
+    font-weight: bold;
+}
+
+.card-front {
+    background: white;
+    transform: rotateY(180deg);
+    border: 3px solid #e2e8f0;
+}
+
+.card-front img {
+    width: 70%;
+    height: 70%;
+    object-fit: contain;
+}
+
+.card.matched .card-front {
+    background: linear-gradient(145deg, #c6f6d5, #9ae6b4);
+    border-color: #48bb78;
+}
+
+.stats {
+    margin-top: 15px;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-shrink: 0;
+}
+
+.stats span {
+    color: #0077be;
+    font-size: 1rem;
+    font-weight: 600;
+    background: rgba(255, 255, 255, 0.8);
+    padding: 8px 15px;
+    border-radius: 20px;
+}
+
+#restartBtn, #changeDifficultyBtn {
+    margin-top: 15px;
+    padding: 10px 30px;
+    font-size: 1rem;
+    font-weight: 600;
+    color: white;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    margin-left: 10px;
+    margin-right: 10px;
+    flex-shrink: 0;
+}
+
+#restartBtn {
+    background: linear-gradient(145deg, #1a365d, #2c5282);
+    box-shadow: 0 4px 15px rgba(26, 54, 93, 0.4);
+}
+
+#restartBtn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(26, 54, 93, 0.5);
+}
+
+#changeDifficultyBtn {
+    background: linear-gradient(145deg, #2c5282, #3182ce);
+    box-shadow: 0 4px 15px rgba(49, 130, 206, 0.4);
+}
+
+#changeDifficultyBtn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(104, 211, 145, 0.5);
+}
+
+@media (max-width: 550px) {
+    .game-board {
+        gap: 10px;
+        padding: 15px;
+        max-width: 350px;
+    }
+    
+    h1 {
+        font-size: 1.8rem;
+    }
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal.active {
+    display: flex;
+}
+
+.modal-content {
+    position: relative;
+    background: rgba(255, 255, 255, 0.95);
+    padding: 0;
+    border-radius: 25px;
+    text-align: center;
+    min-width: 350px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+}
+
+#fireworksCanvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+.modal-text {
+    position: relative;
+    z-index: 1;
+    padding: 40px;
+}
+
+.modal-text h2 {
+    color: #0077be;
+    font-size: 2rem;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.modal-text p {
+    color: #0077be;
+    font-size: 1.2rem;
+    margin: 10px 0;
+    font-weight: 600;
+}
+
+.modal-text p span {
+    color: #ffd700;
+}
+
+.modal-buttons {
+    margin-top: 25px;
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+#playAgainBtn, #closeModalBtn {
+    padding: 12px 30px;
+    font-size: 1rem;
+    font-weight: 600;
+    color: white;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+#playAgainBtn {
+    background: linear-gradient(145deg, #ed8936, #dd6b20);
+    box-shadow: 0 4px 15px rgba(237, 137, 54, 0.4);
+}
+
+#playAgainBtn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(237, 137, 54, 0.5);
+}
+
+#closeModalBtn {
+    background: linear-gradient(145deg, #68d391, #48bb78);
+    box-shadow: 0 4px 15px rgba(104, 211, 145, 0.4);
+}
+
+#closeModalBtn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(104, 211, 145, 0.5);
+}
