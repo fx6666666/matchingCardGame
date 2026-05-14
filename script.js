@@ -25,11 +25,25 @@ const allFruits = [
     { name: 'pineapple', emoji: '🍍' },
     { name: 'mango', emoji: '🥭' },
     { name: 'pear', emoji: '🍐' },
-    { name: 'plum', emoji: '🍑' },
+    { name: 'plum', emoji: '🫒' },
     { name: 'coconut', emoji: '🥥' },
     { name: 'blueberry', emoji: '🫐' },
     { name: 'apricot', emoji: '🍑' },
-    { name: 'raspberry', emoji: '🫐' }
+    { name: 'raspberry', emoji: '🫐' },
+    { name: 'pomegranate', emoji: '🍈' },
+    { name: 'fig', emoji: '🫒' },
+    { name: 'lime', emoji: '🍈' },
+    { name: 'avocado', emoji: '🥑' },
+    { name: 'tomato', emoji: '🍅' },
+    { name: 'pepper', emoji: '🌶️' },
+    { name: 'eggplant', emoji: '🍆' },
+    { name: 'carrot', emoji: '🥕' },
+    { name: 'corn', emoji: '🌽' },
+    { name: 'mushroom', emoji: '🍄' },
+    { name: 'chestnut', emoji: '🌰' },
+    { name: 'olive', emoji: '🫒' },
+    { name: 'garlic', emoji: '🧄' },
+    { name: 'onion', emoji: '🧅' }
 ];
 
 let cards = [];
