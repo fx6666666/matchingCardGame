@@ -461,6 +461,7 @@ document.querySelectorAll('.modal-time-btn').forEach(btn => {
     btn.addEventListener('click', () => {
         selectedMemorizeTime = parseInt(btn.dataset.time);
         currentMemorizeTime = selectedMemorizeTime;
+        gridSize = selectedGridSize;
         hideTimeModal();
         difficultySelect.style.display = 'none';
         gameArea.style.display = 'block';
